@@ -21,6 +21,7 @@ export interface FormState {
   activeChatroomId: string | null;
   chatrooms: Chatroom[];
   ownerUser: User;
+  startChatOpen: boolean;
 }
 
 // Initial state
@@ -35,6 +36,7 @@ export const initialState: FormState = {
   ownerUser: owner,
   activeChatroomId: null,
   chatrooms: [],
+  startChatOpen: false,
 }
 
 // Reducer
@@ -67,17 +69,21 @@ export const chatroomSlice = createSlice({
         currentChatroom.draftMessage = '';
       }
     },
+    setStartChatOpen: (state, action: PayloadAction<boolean>) => {
+      state.startChatOpen = action.payload;
+    },
   },
 });
 
 // Actions
-export const { changeSelectecChatroomId, addChatroom, addMessage, changeDraftMessage, clearDraftMessage } = chatroomSlice.actions;
+export const { changeSelectecChatroomId, addChatroom, addMessage, changeDraftMessage, clearDraftMessage, setStartChatOpen } = chatroomSlice.actions;
 
 // Selectors
 export const selectActiveChatroomId = (state: RootState) => state.chatrooms.activeChatroomId;
 export const selectUsers = (state: RootState) => state.chatrooms.users;
 export const selectChatrooms = (state: RootState) => state.chatrooms.chatrooms;
 export const selectOwner = (state: RootState) => state.chatrooms.ownerUser;
+export const selectStartChatOpen = (state: RootState) => state.chatrooms.startChatOpen;
 
 export const selectChatroomTitleById = (chatroomId: string | null) => {
   return (state: RootState) => {
