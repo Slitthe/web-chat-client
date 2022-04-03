@@ -21,4 +21,5 @@ export interface Chatroom {
   groupName?: string;
   participants: User[];
   messages: Message[];
+  draftMessage: string;
 }

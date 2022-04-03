@@ -3,7 +3,34 @@ import styles from "./CreateChat.module.css";
 import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
 import { addChatroom, selectUsers } from "../../redux/ChatroomSlice";
-import { Chatroom, ChatroomType } from "../../types/Interface";
+import { Chatroom, ChatroomType, User } from "../../types/Interface";
+
+const generateIndividualChatroom = (users: User[], selectedUsername: string): Chatroom => {
+
+    const userToAdd = users.find(user => user.userName === selectedUsername);
+    return {
+        type: ChatroomType.individual,
+        participants: userToAdd ? [userToAdd] : [],
+        id: `${Math.random()}`,
+        messages: [],
+        draftMessage: '',
+    }
+
+}
+
+const generateGroupChatroom = (selectedUsers: {label: string, value: string}[], groupName: string): Chatroom => {
+    const mappedUsers: User[] = selectedUsers.map(selectUser => ({userName: selectUser.value, displayName: selectUser.label}));
+
+    return {
+        type: ChatroomType.group,
+        groupName: groupName,
+        participants: mappedUsers,
+        id: `${Math.random()}`,
+        messages: [],
+        draftMessage: '',
+    }
+
+}
 
 export default function CreateChat() {
   const users = useSelector(selectUsers);
@@ -13,22 +40,15 @@ export default function CreateChat() {
   const [groupName, setGroupName] = useState("");
   const dispatch = useDispatch();
 
-  /* 
-    id: string;
-  type: ChatroomType;
-  groupName?: string;
-  participants: User[];
-  messages: Message[];
-  */
-  const createChatroom = () => {
-    const chatroom: Chatroom = {
-        type: ChatroomType.individual,
-        participants: [{userName: "j.snow", displayName: "John Snow"}],
-        id: `${Math.random()}`,
-        messages: [],
 
-    }
-    dispatch(addChatroom(chatroom));
+  const createChatroom = () => {
+      if(isGroupCreateMode && groupName && selectedUsers.length > 0) {
+        dispatch(addChatroom(generateGroupChatroom(selectedUsers, groupName)));
+      }
+
+      if(!isGroupCreateMode && selectedUser) {
+        dispatch(addChatroom(generateIndividualChatroom(users, selectedUser)));
+      }
   };
 
   const toggleGroupCreateMode = () => {
