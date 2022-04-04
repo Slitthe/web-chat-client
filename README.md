@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
-(It's recommended to use yarn as the package manager [Install Yarn](https://classic.yarnpkg.com/lang/en/docs/install)
+(It's recommended to use yarn as the package manager [Install Yarn](https://yarnpkg.com/getting-started/install)
 In the project directory, you can run:
 
 ### `yarn install`
