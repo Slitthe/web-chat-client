@@ -1,4 +1,4 @@
-import { Chatroom, ChatroomType, User } from "../types/Interface";
+import {Chatroom, ChatroomType, User} from "../types/Interface";
 
 export const generateIndividualChatroom = (users: User[], selectedUsername: string): Chatroom => {
 
@@ -13,8 +13,11 @@ export const generateIndividualChatroom = (users: User[], selectedUsername: stri
 
 }
 
-export const generateGroupChatroom = (selectedUsers: {label: string, value: string}[], groupName: string): Chatroom => {
-    const mappedUsers: User[] = selectedUsers.map(selectUser => ({userName: selectUser.value, displayName: selectUser.label}));
+export const generateGroupChatroom = (selectedUsers: { label: string, value: string }[], groupName: string): Chatroom => {
+    const mappedUsers: User[] = selectedUsers.map(selectUser => ({
+        userName: selectUser.value,
+        displayName: selectUser.label
+    }));
 
     return {
         type: ChatroomType.group,

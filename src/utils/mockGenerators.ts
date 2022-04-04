@@ -1,5 +1,5 @@
 import moment from "moment";
-import { Message, User } from "../types/Interface";
+import {Message, User} from "../types/Interface";
 
 export const generateMockMessages = (users: User[], messagesToEcho: string) => {
     const messages: Message[] = [];
