@@ -40,7 +40,7 @@ export const initialState: FormState = {
 }
 
 // Reducer
-export const chatroomSlice = createSlice({
+export const appSlice = createSlice({
   name: 'chatrooms',
   initialState,
   reducers: {
@@ -76,21 +76,21 @@ export const chatroomSlice = createSlice({
 });
 
 // Actions
-export const { changeSelectecChatroomId, addChatroom, addMessage, changeDraftMessage, clearDraftMessage, setStartChatOpen } = chatroomSlice.actions;
+export const { changeSelectecChatroomId, addChatroom, addMessage, changeDraftMessage, clearDraftMessage, setStartChatOpen } = appSlice.actions;
 
 // Selectors
-export const selectActiveChatroomId = (state: RootState) => state.chatrooms.activeChatroomId;
-export const selectUsers = (state: RootState) => state.chatrooms.users;
-export const selectChatrooms = (state: RootState) => state.chatrooms.chatrooms;
-export const selectOwner = (state: RootState) => state.chatrooms.ownerUser;
-export const selectStartChatOpen = (state: RootState) => state.chatrooms.startChatOpen;
+export const selectActiveChatroomId = (state: RootState) => state.app.activeChatroomId;
+export const selectUsers = (state: RootState) => state.app.users;
+export const selectChatrooms = (state: RootState) => state.app.chatrooms;
+export const selectOwner = (state: RootState) => state.app.ownerUser;
+export const selectStartChatOpen = (state: RootState) => state.app.startChatOpen;
 
 export const selectChatroomTitleById = (chatroomId: string | null) => {
   return (state: RootState) => {
     if(chatroomId === null) {
       return '';
     }
-    const chatroom = state.chatrooms.chatrooms.find(chatroom => chatroom.id === chatroomId);
+    const chatroom = state.app.chatrooms.find(chatroom => chatroom.id === chatroomId);
     if(chatroom) {
       return chatroom.type === ChatroomType.group ? chatroom.groupName : chatroom.participants[0].displayName
     } else {
@@ -100,9 +100,9 @@ export const selectChatroomTitleById = (chatroomId: string | null) => {
 }
 
 export const selectActiveChatroom = (state: RootState) => {
-  const selectedChatroomId = state.chatrooms.activeChatroomId;
+  const selectedChatroomId = state.app.activeChatroomId;
 
-  return state.chatrooms.chatrooms.find(chatroom => chatroom.id === selectedChatroomId);
+  return state.app.chatrooms.find(chatroom => chatroom.id === selectedChatroomId);
 };
 
 

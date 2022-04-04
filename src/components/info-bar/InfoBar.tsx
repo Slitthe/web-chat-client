@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import { selectActiveChatroom, selectActiveChatroomId, selectChatroomTitleById } from '../../redux/ChatroomSlice';
+import { selectActiveChatroom, selectActiveChatroomId, selectChatroomTitleById } from '../../redux/AppSlice';
 import { ChatroomType } from '../../types/Interface';
 import styles from './InfoBar.module.css';
 

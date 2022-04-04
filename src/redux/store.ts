@@ -1,9 +1,9 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import { chatroomSlice } from './ChatroomSlice';
+import { appSlice } from './AppSlice';
 
 export const store = configureStore({
   reducer: {
-    chatrooms: chatroomSlice.reducer,
+    app: appSlice.reducer,
   },
   
   
@@ -15,9 +15,3 @@ export const store = configureStore({
 });
 
 export type RootState = ReturnType<typeof store.getState>;
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  RootState,
-  unknown,
-  Action<string>
->;

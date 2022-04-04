@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./CreateChat.module.css";
 import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
-import { addChatroom, changeSelectecChatroomId, selectChatrooms, selectUsers, setStartChatOpen } from "../../redux/ChatroomSlice";
+import { addChatroom, changeSelectecChatroomId, selectChatrooms, selectUsers, setStartChatOpen } from "../../redux/AppSlice";
 import { Chatroom, ChatroomType, User } from "../../types/Interface";
 import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
 import { generateGroupChatroom, generateIndividualChatroom } from "../../utils/chatroomGenerators";

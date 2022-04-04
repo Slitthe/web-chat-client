@@ -1,6 +1,6 @@
 import moment from 'moment';
 import React from 'react';
-import { Message } from '../../../types/Interface';
+import { Message } from '../../types/Interface';
 import styles from './ChatListItem.module.css';
 
 export interface ChatListItemProps {

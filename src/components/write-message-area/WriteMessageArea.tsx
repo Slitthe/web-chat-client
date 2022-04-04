@@ -1,10 +1,9 @@
 import moment from "moment";
-import React, { useRef, useState } from "react";
+import React from "react";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { changeDraftMessage, selectActiveChatroom, selectActiveChatroomId, selectOwner, addMessage, clearDraftMessage } from "../../redux/ChatroomSlice";
+import { changeDraftMessage, selectActiveChatroom, selectActiveChatroomId, selectOwner, addMessage, clearDraftMessage } from "../../redux/AppSlice";
 import { Message } from "../../types/Interface";
-import styles from "./WriteMessageArea.module.css";
 
 export default function WriteMessageArea() {
   const dispatch = useDispatch();
@@ -42,7 +41,7 @@ export default function WriteMessageArea() {
   };
 
   return (
-    <div className={styles.container}>
+    <div>
       <InputGroup>
         <FormControl placeholder="Type a message" aria-describedby="basic-addon2" value={activeChatroom ? activeChatroom.draftMessage : ""} onChange={changeMessage} onKeyUp={inputKeyUpHandler}/>
         {activeChatroom && activeChatroom.draftMessage !== "" ? (
@@ -51,9 +50,6 @@ export default function WriteMessageArea() {
           </Button>
         ) : null}
       </InputGroup>
-
-      {/* <input type="text" value={activeChatroom ? activeChatroom.draftMessage : ''} onChange={changeMessage} />
-      <button onClick={sendMessage}>Send</button> */}
     </div>
   );
 }

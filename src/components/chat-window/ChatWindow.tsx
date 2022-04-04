@@ -1,11 +1,11 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import { selectActiveChatroomId, selectStartChatOpen } from '../../redux/ChatroomSlice';
+import { selectActiveChatroomId, selectStartChatOpen } from '../../redux/AppSlice';
 import Conversations from '../conversations/Conversations';
 import InfoBar from '../info-bar/InfoBar';
 import WriteMessageArea from '../write-message-area/WriteMessageArea';
 import styles from './ChatWindow.module.css';
-import NoSelectedChatroom from './no-selected-chatroom/NoSelectedChatroom';
+import NoSelectedChatroom from '../no-selected-chatroom/NoSelectedChatroom';
 
 export default function ChatWindow() {
   const selectedChatroomId = useSelector(selectActiveChatroomId);

@@ -1,5 +1,3 @@
-import { Moment } from "moment";
-
 export enum ChatroomType {
   group = 'group',
   individual = 'individual',
