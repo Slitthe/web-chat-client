@@ -1,3 +1,7 @@
 .container {
-    background: rgba(49, 80, 166, 0.675);
+    color: white;
+    text-align: center;
+    padding: 8px 8px;
+    background-image: url("../../assets/dark-bubble.png");
+    box-shadow: 0px 2px 8px #00000063;
 }

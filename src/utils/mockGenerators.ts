@@ -5,7 +5,7 @@ export const generateMockMessages = (users: User[], messagesToEcho: string) => {
     const messages: Message[] = [];
     users.forEach(user => {
         messages.push({
-            sentTime: moment(),
+            sentTime: moment().toISOString(),
             text: `${messagesToEcho} 🙂`,
             sender: user
         });
@@ -13,11 +13,3 @@ export const generateMockMessages = (users: User[], messagesToEcho: string) => {
 
     return messages;
 }
-
-/* 
-export interface Message {
-  sentTime: Moment;
-  text: string;
-  sender: User;
-}
-*/

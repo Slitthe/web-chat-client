@@ -2,34 +2,14 @@ import React, { useState } from "react";
 import styles from "./CreateChat.module.css";
 import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
-import { addChatroom, changeSelectecChatroomId, selectChatrooms, selectStartChatOpen, selectUsers, setStartChatOpen } from "../../redux/ChatroomSlice";
+import { addChatroom, changeSelectecChatroomId, selectChatrooms, selectUsers, setStartChatOpen } from "../../redux/ChatroomSlice";
 import { Chatroom, ChatroomType, User } from "../../types/Interface";
+import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
+import { generateGroupChatroom, generateIndividualChatroom } from "../../utils/chatroomGenerators";
 
-const generateIndividualChatroom = (users: User[], selectedUsername: string): Chatroom => {
 
-    const userToAdd = users.find(user => user.userName === selectedUsername);
-    return {
-        type: ChatroomType.individual,
-        participants: userToAdd ? [userToAdd] : [],
-        id: `${Math.random()}`,
-        messages: [],
-        draftMessage: '',
-    }
-
-}
-
-const generateGroupChatroom = (selectedUsers: {label: string, value: string}[], groupName: string): Chatroom => {
-    const mappedUsers: User[] = selectedUsers.map(selectUser => ({userName: selectUser.value, displayName: selectUser.label}));
-
-    return {
-        type: ChatroomType.group,
-        groupName: groupName,
-        participants: mappedUsers,
-        id: `${Math.random()}`,
-        messages: [],
-        draftMessage: '',
-    }
-
+const isValidGroup = (participants: User[], groupName: string): boolean => {
+  return participants.length > 1 && groupName.trim() !== '';
 }
 
 const getIndividualChatroomIdByParticipantUsername = (chatrooms: Chatroom[], participantUsername: string) => {
@@ -48,6 +28,9 @@ export default function CreateChat() {
   const chatrooms = useSelector(selectChatrooms);
 
 
+  const returnHandler = () => {
+    dispatch(setStartChatOpen(false));
+  }
 
 
 
@@ -94,7 +77,6 @@ export default function CreateChat() {
       placeholder="Chat participant..."
       name="user-search-single"
       hideSelectedOptions
-      // defaultValue={colourOptions[0]}]
       onChange={(event) => setSelectedUser(event ? event.value : null)}
       options={users.map((user) => ({ label: user.displayName, value: user.userName }))}
     />
@@ -108,7 +90,6 @@ export default function CreateChat() {
       placeholder="Chat participants..."
       name="user-search-multiple"
       isMulti
-      // defaultValue={colourOptions[0]}]
       onChange={(event) => {
           return setSelectedUsers(event);
       }}
@@ -118,13 +99,32 @@ export default function CreateChat() {
 
   return (
     <div>
-         {isGroupCreateMode ? multiUserSelect : singleUserSelect}
-      {isGroupCreateMode ? <input type="text" value={groupName} onChange={changeGroupName} placeholder="Group name" /> : null}
+      <div className={styles.actionButtonsContainer}>
+      <Button variant="secondary" onClick={returnHandler} >
+            {'< Back'}
+          </Button>
+        <Button disabled={isGroupCreateMode ? !isValidGroup(selectedUsers, groupName) : selectedUser === null} variant="light" onClick={createChatroom} >
+            Create
+          </Button>
+        
+      </div>
+      {isGroupCreateMode ? multiUserSelect : singleUserSelect}
+
+{isGroupCreateMode ? <InputGroup>
+        <FormControl placeholder="Group name" aria-describedby="basic-addon2" value={groupName} onChange={changeGroupName}/>
+      </InputGroup> : null}
+      
+
+      <Form.Check 
+      type="switch"
+      id="custom-switch"
+      label={<Form.Text className={styles.groupCreateLabel}>
+      Group
+    </Form.Text>}
+      checked={isGroupCreateMode}
+      onChange={toggleGroupCreateMode}
+    />
        
-      <input type="checkbox" checked={isGroupCreateMode} onChange={toggleGroupCreateMode} />
-      <button disabled={isGroupCreateMode ? selectedUsers.length < 1 : selectedUser === null} onClick={createChatroom}>
-        Create
-      </button>
     </div>
   );
 }

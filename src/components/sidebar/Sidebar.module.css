@@ -1,4 +1,7 @@
 .container {
     flex: 1;
     max-width: 300px;
+    background: #6c7b9c;
+    display: flex;
+    flex-direction: column;
 }

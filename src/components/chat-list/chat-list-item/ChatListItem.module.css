@@ -1,0 +1,18 @@
+.chatListItemContainer {
+    cursor: pointer;
+    color: white;
+    padding: 4px 8px;
+}
+
+.nameTime {
+    display: flex;
+    justify-content: space-between;
+}
+
+.lastMessage {
+    color: #bebebe;
+}
+
+.selectedChat {
+    background: #00000036;
+}

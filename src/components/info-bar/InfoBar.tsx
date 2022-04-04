@@ -1,14 +1,17 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import { selectActiveChatroomId, selectChatroomTitleById } from '../../redux/ChatroomSlice';
+import { selectActiveChatroom, selectActiveChatroomId, selectChatroomTitleById } from '../../redux/ChatroomSlice';
+import { ChatroomType } from '../../types/Interface';
 import styles from './InfoBar.module.css';
 
 export default function InfoBar() {
   const activeChatroomId = useSelector(selectActiveChatroomId);
-  const chatName = useSelector(selectChatroomTitleById(activeChatroomId))
+  const chatName = useSelector(selectChatroomTitleById(activeChatroomId));
+
+  const activeChatroom = useSelector(selectActiveChatroom);
   return (
     <div className={styles.container}>
-      {chatName}
+      {chatName}{activeChatroom?.type === ChatroomType.group ? " (group) " : null}
     </div>
   )
 }

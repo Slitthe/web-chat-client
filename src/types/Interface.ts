@@ -11,7 +11,7 @@ export interface User {
 }
 
 export interface Message {
-  sentTime: Moment;
+  sentTime: string;
   text: string;
   sender: User;
 }
