@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.c9eb86bf.chunk.css",
+    "main.js": "/static/js/main.bcf0f7a4.chunk.js",
+    "main.js.map": "/static/js/main.bcf0f7a4.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.c3d5ff18.js",
+    "runtime-main.js.map": "/static/js/runtime-main.c3d5ff18.js.map",
+    "static/js/2.b6901cab.chunk.js": "/static/js/2.b6901cab.chunk.js",
+    "static/js/2.b6901cab.chunk.js.map": "/static/js/2.b6901cab.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.8776a8c1f0e02500eed034eb6d951ab3.js": "/precache-manifest.8776a8c1f0e02500eed034eb6d951ab3.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.c9eb86bf.chunk.css.map": "/static/css/main.c9eb86bf.chunk.css.map",
+    "static/js/2.b6901cab.chunk.js.LICENSE.txt": "/static/js/2.b6901cab.chunk.js.LICENSE.txt",
+    "static/media/InfoBar.module.css": "/static/media/dark-bubble.444cea35.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c3d5ff18.js",
+    "static/js/2.b6901cab.chunk.js",
+    "static/css/main.c9eb86bf.chunk.css",
+    "static/js/main.bcf0f7a4.chunk.js"
+  ]
+}
